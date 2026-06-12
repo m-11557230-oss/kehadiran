@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Kehadiran Kelas 5AB</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 650px;
+            background: white;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .input-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #495057;
+        }
+        select, input[type="date"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        
+        /* Kotak Alasan Tidak Hadir (Merah) - Sentiasa Terpapar */
+        #kotakTidakHadir {
+            display: block;
+            background: #f8d7da;
+            padding: 12px;
+            border-left: 5px solid #dc3545;
+            border-radius: 4px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-simpan {
+            background-color: #25D366; /* Hijau WhatsApp */
+            color: white;
+        }
+        .btn-simpan:hover {
+            background-color: #128C7E;
+        }
+        .btn-padam {
+            background-color: #dc3545;
+            color: white;
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sistem Kehadiran Kelas</h2>
+
+    <div class="input-section">
+        <label for="tarikh">Tarikh:</label>
+        <input type="date" id="tarikh">
+
+        <label for="namaPelajar">Pilih Nama Rakan:</label>
+        <select id="namaPelajar">
+            <option value="">-- Sila Pilih Nama --</option>
+            <option value="ADELIA HANA BINTI ADDY ZULKARNAIN">ADELIA HANA BINTI ADDY ZULKARNAIN</option>
+            <option value="ALYA QISTINA NABILA BINTI ABDULLAH">ALYA QISTINA NABILA BINTI ABDULLAH</option>
+            <option value="AUNI RAUDHAH BINTI MOHD ZAKI">AUNI RAUDHAH BINTI MOHD ZAKI</option>
+            <option value="DALILA HANI BINTI MOHD KHAIRUL HAKIMIE">DALILA HANI BINTI MOHD KHAIRUL HAKIMIE</option>
+            <option value="DAMYA ANNUR HANA BINTI HELMI">DAMYA ANNUR HANA BINTI HELMI</option>
+            <option value="MOHAMAD HAZIQ HAKIM BIN NORHISHAMMUDIN">MOHAMAD HAZIQ HAKIM BIN NORHISHAMMUDIN</option>
+            <option value="MOHAMAD TAUFIQ FIRDAUS BIN BAHARIN">MOHAMAD TAUFIQ FIRDAUS BIN BAHARIN</option>
+            <option value="MUHAMMAD ALIFF ZIQRI BIN MOHAMMAD FAIZUL">MUHAMMAD ALIFF ZIQRI BIN MOHAMMAD FAIZUL</option>
+            <option value="MUHAMMAD AMMAR BIN ALIAS">MUHAMMAD AMMAR BIN ALIAS</option>
+            <option value="MUHAMMAD ARASH RAYYAN BIN ABDUL RAZAMI MUHAMMAD">MUHAMMAD ARASH RAYYAN BIN ABDUL RAZAMI MUHAMMAD</option>
+            <option value="MUHAMMAD AZAM IQBAL BIN MOHD IDHAM">MUHAMMAD AZAM IQBAL BIN MOHD IDHAM</option>
+            <option value="MUHAMMAD IMAN HAZIM BIN AZMI">MUHAMMAD IMAN HAZIM BIN AZMI</option>
+            <option value="MUHAMMAD PUTRA ARSYAD ESDANIEL BIN ZAINUDIN">MUHAMMAD PUTRA ARSYAD ESDANIEL BIN ZAINUDIN</option>
+            <option value="MUHAMMAD SYAHMI BIN SHAMSUDIN">MUHAMMAD SYAHMI BIN SHAMSUDIN</option>
+            <option value="NUR AIZAZAHRA BINTI OMAR SHARIF">NUR AIZAZAHRA BINTI OMAR SHARIF</option>
+            <option value="NUR DAMIA QAISARA BINTI FAUZI REZAL">NUR DAMIA QAISARA BINTI FAUZI REZAL</option>
+            <option value="NUR DINI MAISARAH BINTI HASMANIZAM">NUR DINI MAISARAH BINTI HASMANIZAM</option>
+            <option value="NUR FATIN HUMAIRA BINTI RAZAK">NUR FATIN HUMAIRA BINTI RAZAK</option>
+            <option value="NUR WANIE ATIKAH BINTI RAHIM">NUR WANIE ATIKAH BINTI RAHIM</option>
+            <option value="PUTERI ALISHA ADELIA BINTI SHAHRARUDDIN">PUTERI ALISHA ADELIA BINTI SHAHRARUDDIN</option>
+            <option value="SERI MUNIRAH BINTI MAHADHIR">SERI MUNIRAH BINTI MAHADHIR</option>
+            <option value="TILOTHANADEVAN NAIR A/P BALA RAMA DEVAN">TILOTHANADEVAN NAIR A/P BALA RAMA DEVAN</option>
+            <option value="SUGANITHYA A/P LOGANATHAN">SUGANITHYA A/P LOGANATHAN</option>
+        </select>
+
+        <div id="kotakTidakHadir">
+            <label for="alasanTidakHadir" style="margin-top: 0; color: #721c24;">Sila Taip Alasan Tidak Hadir:</label>
+            <input type="text" id="alasanTidakHadir" placeholder="Contoh: Sakit demam, urusan keluarga, tiada transport">
+        </div>
+
+        <button type="button" class="btn-simpan" onclick="simpanKehadiran()">Hantar Laporan Ke WhatsApp</button>
+    </div>
+
+    <h3>Rekod Ketidakhadiran Hari Ini (<span id="paparTarikh"></span>)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nama Pelajar</th>
+                <th>Alasan Ketidakhadiran</th>
+            </tr>
+        </thead>
+        <tbody id="senaraiLaporan">
+            </tbody>
+    </table>
+    
+    <button type="button" class="btn-padam" onclick="padamSemua()">Padam Semua Rekod</button>
+</div>
+
+<script>
+    const nomborCikgu = "60199621574"; 
+
+    const hariIni = new Date().toISOString().split('T')[0];
+    document.getElementById('tarikh').value = hariIni;
+    document.getElementById('paparTarikh').innerText = hariIni;
+
+    paparData();
+
+    function simpanKehadiran() {
+        const nama = document.getElementById('namaPelajar').value;
+        const tarikh = document.getElementById('tarikh').value;
+        
+        // Status sentiasa "Tidak Hadir" secara automatik
+        const status = "Tidak Hadir"; 
+        let alasan = document.getElementById('alasanTidakHadir').value.trim();
+
+        if (nama === "") {
+            alert("Sila pilih nama kawan dulu!");
+            return;
+        }
+
+        // Jika kotak alasan dibiarkan kosong
+        if(alasan === "") { 
+            alasan = "Tanpa Sebab"; 
+        }
+
+        let rekodSediaAda = JSON.parse(localStorage.getItem('kehadiranKelas')) || [];
+        const dataBaru = { tarikh: tarikh, nama: nama, status: status, alasan: alasan };
+        const indeksSama = rekodSediaAda.findIndex(item => item.nama === nama && item.tarikh === tarikh);
+        
+        if (indeksSama !== -1) {
+            rekodSediaAda[indeksSama].alasan = alasan; 
+        } else {
+            rekodSediaAda.push(dataBaru);
+        }
+
+        localStorage.setItem('kehadiranKelas', JSON.stringify(rekodSediaAda));
+        paparData();
+
+        // Mesej ke WhatsApp
+        const teksMesej = `Laporan Ketidakhadiran Kelas (%2A${tarikh}%2A)%0A%0ANama: ${nama}%0AStatus: %2A${status}%2A%0AAlasan: ${alasan}`;
+        const urlWhatsApp = `https://api.whatsapp.com/send?phone=${nomborCikgu}&text=${teksMesej}`;
+        window.open(urlWhatsApp, '_blank');
+
+        // Reset borang semula selepas hantar
+        document.getElementById('namaPelajar').value = "";
+        document.getElementById('alasanTidakHadir').value = "";
+    }
+
+    function paparData() {
+        const tarikhDipilih = document.getElementById('tarikh').value;
+        document.getElementById('paparTarikh').innerText = tarikhDipilih;
+        
+        const rekodSediaAda = JSON.parse(localStorage.getItem('kehadiranKelas')) || [];
+        const tbody = document.getElementById('senaraiLaporan');
+        tbody.innerHTML = ""; 
+
+        const dataHariIni = rekodSediaAda.filter(item => item.tarikh === tarikhDipilih);
+
+        if(dataHariIni.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='2' style='text-align:center; color:#999;'>Tiada rekod ketidakhadiran untuk tarikh ini. Semua hadir!</td></tr>";
+            return;
+        }
+
+        dataHariIni.forEach(item => {
+            let row = `<tr>
+                <td>${item.nama}</td>
+                <td><b>${item.alasan}</b></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    document.getElementById('tarikh').addEventListener('change', paparData);
+
+    function padamSemua() {
+        if(confirm("Betul ke nak padam semua rekod kehadiran yang tersimpan dalam browser ni?")) {
+            localStorage.removeItem('kehadiranKelas');
+            paparData();
+        }
+    }
+</script>
+
+</body>
+</html>
